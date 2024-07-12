@@ -1,0 +1,11 @@
+.active{
+    background-color: rgb(20, 99, 244);
+    color: white;
+
+}
+
+.notactive{
+    background-color: rgb(150, 151, 156);
+    color: white;
+}
+
