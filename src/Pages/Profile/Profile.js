@@ -1,8 +1,14 @@
 import React from 'react'
+import ProfileHeader from '../../components/ProfileHeader'
+import ContactDetailsForm from '../../components/ContactDetails/ContactDetailsForm'
+
 
 const Profile = () => {
   return (
-    <div style={{fontSize:"60px", textAlign:"center"}}>Welcome To Expense Traker</div>
+    <div>
+    <ProfileHeader/>
+    <ContactDetailsForm/>
+    </div>
   )
 }
 
