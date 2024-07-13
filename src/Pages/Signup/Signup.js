@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import Input from '../../UI/Input'
 import Button from '../../UI/Button';
 import classes from "./Signup.module.css"
+import { Link } from 'react-router-dom';
+let url="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBqneiGRuQnRsXP9KMWcL0KKPcEVssnBVM";
+          
 const Signup = () => {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
@@ -12,12 +15,9 @@ const Signup = () => {
   const [formValidate, setFormValidate] = useState(false)
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false)
-  const [isLogin, setIsLogin] = useState(true)
 
 
-  const handleClick = ()  => {
-    setIsLogin((prev) => !prev)
-  }
+
 
 
   const validateEmail = () => {
@@ -60,14 +60,7 @@ const Signup = () => {
         setIsLoading(true)
         
         try{
-          let url;
-          if(isLogin){
-            url ="https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBqneiGRuQnRsXP9KMWcL0KKPcEVssnBVM"
-
-          }else{
-            url="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBqneiGRuQnRsXP9KMWcL0KKPcEVssnBVM";
-          }
-
+        
           const response = await fetch(url,{
             method:'POST',
             body:JSON.stringify({
@@ -114,7 +107,7 @@ const Signup = () => {
       {error && <div className={classes.error}>{error}</div>}
       {isLoading &&  <p className={classes.error}>Loading...</p>}
     <div className={classes.form}>
-      <h2>{isLogin ? "Login" : "Sign Up"}</h2>
+      <h2>Sign Up</h2>
     <form onSubmit={handleFormSubmit}>
         <Input
         type="email"
@@ -144,11 +137,11 @@ const Signup = () => {
         type="submit"
         disabled={!formValidate}
         
-        >{isLogin ? "Login" : "Sign Up"}</Button>
+        >Sign Up</Button>
       </form>
     </div>
       <div className={classes["have-account"]}>
-        <Button type="button" onClick={handleClick}>{isLogin ? "Don't have account ,Sign Up": "Have an account? Login"  }</Button>
+        <Button type="button"><Link to="/login">Have an account? Login</Link></Button>
       </div>
     </div>
   )
