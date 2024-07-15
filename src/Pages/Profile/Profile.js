@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ProfileHeader from '../../components/ProfileHeader'
 import ContactDetailsForm from '../../components/ContactDetails/ContactDetailsForm'
 
-
 const Profile = () => {
+  const [toggle,setToggle] = useState(false)
+
+  const handleButtonClick = () => {
+      setToggle((prev) => !prev)
+  }
+
   return (
-    <div>
-    <ProfileHeader/>
-    <ContactDetailsForm/>
-    </div>
+    <>
+    <ProfileHeader onActive={handleButtonClick}/>
+    {toggle &&  <ContactDetailsForm />
+    }
+ 
+    
+  
+    </>
   )
 }
 

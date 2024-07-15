@@ -11,14 +11,19 @@
     font-weight: 400;
 }
 
-.action{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(244, 178, 198);
-    padding: 5px;
+.action {
+    
+    height: 1rem;
+    background-color: rgb(249, 163, 163);
     border-radius: 10px;
+    padding: 5px;
 }
+
+.action span{
+     color: rgb(3, 3, 145);
+     border-bottom: 1px solid rgb(4, 4, 151);
+}
+
 
 .action button{
     background-color: transparent;

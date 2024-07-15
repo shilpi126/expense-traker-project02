@@ -5,9 +5,13 @@ import classes from "./ContactDetailsForm.module.css"
 import AuthContext from '../../store/auth-context'
 
 const ContactDetailsForm = () => {
-    const [fullName, setFullName] = useState("")
-    const [profileUrl,setProfileUrl] = useState("")
     const authCtx = useContext(AuthContext)
+    //console.log(authCtx.user)
+    
+    const [fullName, setFullName] = useState(authCtx.user.displayName)
+    const [profileUrl,setProfileUrl] = useState(authCtx.user.photoUrl)
+  
+
     const handleNameChange = (event) => {
         setFullName(event.target.value)
     }
@@ -45,13 +49,16 @@ const ContactDetailsForm = () => {
         }catch(err){
             console.log(err)
         }
-  setFullName("")
-  setProfileUrl("")
+//   setFullName("")
+//   setProfileUrl("")
     }
 
+    
+ 
 
 
-  return (
+
+return (
     <div className={classes.container}>
         <div className={classes.btn}>
             <h2>Contact Details</h2>
@@ -59,7 +66,7 @@ const ContactDetailsForm = () => {
         </div>
         <form onSubmit={handleFormSubmit}>
         <div className={classes["input-cont"]}>
-       <Input
+        <Input
         type="text"
         id="fullname"
         label="Full Name :"
