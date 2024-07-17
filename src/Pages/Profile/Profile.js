@@ -5,6 +5,7 @@ import Button from '../../UI/Button'
 import classes from "./Profile.module.css"
 import AuthContext from '../../store/auth-context'
 import { Route, Routes} from 'react-router-dom'
+import User from '../User/User'
 const Profile = () => {
   
 
@@ -17,7 +18,7 @@ const Profile = () => {
 <Route path='contact' element={  <ContactDetailsForm/>}/>
   
 </Routes>
-
+<User/>
     
   
     </>

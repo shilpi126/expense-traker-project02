@@ -8,6 +8,7 @@ const AuthContext = createContext({
     isLoggedIn:false,
     getUserData: (token) => {},
     verifyEmailId : (token) => {},
+    logout:() => {}
 
 })
 

@@ -19,12 +19,11 @@ const AuthProvider = (props) => {
 
     useEffect(() => {
 
-        if(existingUser && token){
-          setUserData(existingUser)
+        if(token){
+          
           getUserData(token)
         }
     },[])
-
 
 
 
@@ -60,6 +59,14 @@ const AuthProvider = (props) => {
           console.log(err)
       }
 
+  }
+
+  
+  const logout = () => {
+  
+    localStorage.removeItem("token")
+    setToken("")
+    
   }
 
   
@@ -104,6 +111,7 @@ const AuthProvider = (props) => {
         login,
         isLoggedIn:userIsLoggedIn,
         getUserData,
+        logout,
         verifyEmailId:sendVerifyEmailId,
     }
 

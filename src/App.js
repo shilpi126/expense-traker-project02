@@ -14,10 +14,10 @@ function App() {
   return (
     <div>
       <Routes>
-   
-      <Route path="/" element={authCtx.isLoggedIn ?    <User/>: <Navigate to="/login"/> }/> 
-      <Route path="/updateprofile" element={authCtx.isLoggedIn ? <Profile/>: <Navigate to="/login"/> }/> 
-      {authCtx.isLoggedIn && <Route path="/login" element={<Login/>}/>}
+      
+
+      <Route path="/" element={authCtx.isLoggedIn ? <Profile/>: <Navigate to="/login"/> }/> 
+      {!authCtx.isLoggedIn && <Route path="/login" element={<Login/>}/>}
       <Route path="/signup" element={<Signup/>}/>
       <Route path='*' element={<Navigate to='/' />} />
       </Routes>

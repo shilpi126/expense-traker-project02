@@ -19,16 +19,6 @@ const Login = () => {
     const navigate = useNavigate()
 
 
-    console.log(authCtx.token)
-
-    // useEffect(()=>{
-    // if(authCtx.token){
-    //   authCtx.getUserData(authCtx.token)
-      
-    // }else{
-    //   navigate("/login")
-    // }
-    // },[authCtx.token])
     
     const validateEmail = () => {
         
@@ -53,7 +43,13 @@ const Login = () => {
         
     }
 
-
+    // useEffect(()=>{
+    //   if(authCtx.isLoggedIn){
+    //     navigate("/")
+    //   }else{
+    //     navigate("/login")
+    //   }
+    // },[])
 
     
     
