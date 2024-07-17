@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '../UI/Button'
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import classes from "./ProfileHeader.module.css"
 
 
@@ -15,10 +15,11 @@ return (
     <div className={classes.header}>
     <div className={classes.welcome}>Welcome To Expense Traker</div>
     <div className={classes.action}>
-        <Button onClick={handleClick}>Your Profile is incompleted : <span>Complete Now</span></Button>
+        <Button >Your Profile is incompleted : <Link to="contact">Complete Now</Link></Button>
 
         
     </div>
+    <Outlet/>
     </div>
 )
 }

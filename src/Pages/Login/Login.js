@@ -17,6 +17,18 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false)
     const authCtx = useContext(AuthContext);
     const navigate = useNavigate()
+
+
+    console.log(authCtx.token)
+
+    // useEffect(()=>{
+    // if(authCtx.token){
+    //   authCtx.getUserData(authCtx.token)
+      
+    // }else{
+    //   navigate("/login")
+    // }
+    // },[authCtx.token])
     
     const validateEmail = () => {
         
@@ -41,14 +53,8 @@ const Login = () => {
         
     }
 
-      
 
-    useEffect(() => {
-        if(authCtx.token){
-            navigate("/");
-        }
-    },[authCtx.token])
-    
+
     
     
     
@@ -77,6 +83,8 @@ const Login = () => {
                 const data = await response.json();
                 //alert("user successfuly register")
                 authCtx.login(data.idToken)
+                authCtx.getUserData(data.idToken)
+                navigate("/")
             }else{
                 let errorMessage = "Something went wrong!"
                 const data = await response.json();
@@ -84,7 +92,7 @@ const Login = () => {
                     errorMessage=data.error.message
                     
                 }
-                alert(errorMessage)
+                console.log(errorMessage)
                 
                 }
                 setIsLoading(false)

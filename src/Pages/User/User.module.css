@@ -1,0 +1,14 @@
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.btn button{
+    height: 2rem;
+    width: 10rem;
+    background-color: black;
+    border-radius: 5px;
+    border: none;
+}
