@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Input from '../../UI/Input'
 import Button from '../../UI/Button';
-import classes from "./Login.module.css"
+import classes from "./ForgotPassword.module.css"
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../../store/auth-context';
 
-const Login = () => {
-    const [email,setEmail] = useState("");
-    const [password,setPassword] = useState("");
+const ForgotPassword = () => {
 
-    const [passwordValidate, setPasswordValidate] = useState('')
+    const [email,setEmail] = useState("");
+   
     const [emailValidate, setEmailValidate] = useState('')
 
     const [formValidate, setFormValidate] = useState(false)
@@ -28,20 +27,14 @@ const Login = () => {
         setEmailValidate(email.includes("@"))
     }
     
-    const validatePassword = () =>{
-        setPasswordValidate(password.trim().length > 6)
-    }
+  
     
     const handleEmailChange = (event) => {
         setEmail(event.target.value)
-        setFormValidate(event.target.value.includes("@") && password.trim().length > 6 )
+        setFormValidate(event.target.value.includes("@"))
     }
     
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value)
-        setFormValidate(email.includes("@") && event.target.value.trim().length > 6 ) 
-        
-    }
+  
 
   
 
@@ -54,14 +47,13 @@ const Login = () => {
             setIsLoading(true)
             
             try{
-            let url ="https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBqneiGRuQnRsXP9KMWcL0KKPcEVssnBVM"
+            let url ="https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBqneiGRuQnRsXP9KMWcL0KKPcEVssnBVM"
     
                 const response = await fetch(url,{
                 method:'POST',
                 body:JSON.stringify({
-                  email:email,
-                  password:password,
-                  returnSecureToken:true,
+                    email:email,
+                    requestType	:"PASSWORD_RESET",
                 }),
                 headers:{
                     'Content-Type': 'application/json',
@@ -72,9 +64,8 @@ const Login = () => {
             if(response.ok){
                 const data = await response.json();
                 //alert("user successfuly register")
-                authCtx.login(data.idToken)
-                authCtx.getUserData(data.idToken)
-                navigate("/")
+                console.log(data)
+                navigate("/login")
             }else{
                 let errorMessage = "Something went wrong!"
                 const data = await response.json();
@@ -92,17 +83,22 @@ const Login = () => {
             setIsLoading(false)
     
             setEmail("")
-            setPassword("")
+            
             
         }
     
-    
   return (
-    <div className={classes.container}>
+
+<div className={classes.container}>
       {error && <div className={classes.error}>{error}</div>}
       {isLoading &&  <p className={classes.error}>Loading...</p>}
+   <div className={classes.innercontainer}>
+    <div className={classes.img}>
+        <img src='https://th.bing.com/th/id/OIP.TC5KOs_DlhM--Xy0xm7ahQHaHa?w=190&h=190&c=7&r=0&o=5&dpr=1.3&pid=1.7'/>
+    </div>
+    <div  >
     <div className={classes.form}>
-      <h2>Login</h2>
+      <h2>Forgot Password</h2>
     <form onSubmit={handleFormSubmit}>
         <Input
         type="email"
@@ -112,28 +108,22 @@ const Login = () => {
         onChange={handleEmailChange}
         onBlur={validateEmail}
         />
-        <Input
-        type="password"
-        id="password"
-        placeholder="Password"
-        value={password}
-        onChange={handlePasswordChange}
-        onBlur={validatePassword}
-        />
-        
+       
+
         <Button
         type="submit"
         disabled={!formValidate}
         
-        >Login</Button>
-        <p className={classes.link}><Link to='/forgot-password'>forgot password</Link></p>
+        >Forgot Password</Button>
+            <p className={classes.link}><Link to='/forgot-password'>New user, Signup</Link></p>
       </form>
+
     </div>
-      <div className={classes["have-account"]}>
-        <Button type="button" ><Link to="/signup">Don't have account, Sign Up</Link></Button>
-      </div>
+    
     </div>
+   </div>
+</div>
   )
 }
 
-export default Login
+export default ForgotPassword
