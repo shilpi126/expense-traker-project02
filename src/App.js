@@ -6,6 +6,7 @@ import Profile from "./Pages/Profile/Profile";
 import AuthContext from "./store/auth-context";
 import User from "./Pages/User/User";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
+import Expenses from "./Pages/Expenses/Expenses";
 
 function App() {
   const authCtx = useContext(AuthContext)
@@ -16,8 +17,8 @@ function App() {
     <div>
       <Routes>
       
-
-      <Route path="/" element={authCtx.isLoggedIn ? <Profile/>: <Navigate to="/login"/> }/> 
+      <Route path="/" element={<Expenses/>}/>
+      {/* <Route path="/" element={authCtx.isLoggedIn ? <Profile/>: <Navigate to="/login"/> }/>  */}
       {!authCtx.isLoggedIn && <Route path="/login" element={<Login/>}/>}
       <Route path="/signup" element={<Signup/>}/>
       <Route path="/forgot-password" element={<ForgotPassword/>}/>
