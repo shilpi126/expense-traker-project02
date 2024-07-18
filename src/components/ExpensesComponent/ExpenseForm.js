@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Input from '../../UI/Input'
 import Button from "../../UI/Button"
 
 import classes from "./ExpenseForm.module.css"
+import ExpenseContext from '../../store/expense-context'
 const ExpenseForm = (props) => {
+    const expenseCtx = useContext(ExpenseContext)
     const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
     const [category, setCategory] = useState("Food")
@@ -25,16 +27,16 @@ const ExpenseForm = (props) => {
       event.preventDefault();
 
       const expense = {
-        id:Math.random(),
+        
         price,
         category,
         description
       }
+       expenseCtx.addExpenses(expense)
+      //console.log(price, description, category)
 
-      console.log(price, description, category)
 
-
-      props.onSaveExpense(expense)
+    //   props.onSaveExpense(expense)
     }
 
 
