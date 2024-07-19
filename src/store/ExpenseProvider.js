@@ -10,19 +10,22 @@ const ExpenseProvider = (props) => {
     
     const addDataToExpenses = async(item) => {
 
-        console.log(item)
+        //console.log(item)
         try{
             const response = await axios.post("https://expense-traker-f389d-default-rtdb.firebaseio.com/expenses.json",item)
             console.log(response)
-            const data = await response.data;
+            //const data = await response;
             
-            console.log(data)
-            setExpenses((prevExpenses) => [...prevExpenses,data])
+            //console.log(data)
+            setExpenses((prevExpenses) => [...prevExpenses,item])
+
         }catch(err){
             console.log(err.message)
         }
     }
 
+
+    
 
     const getDataFromExpenses = async() => {
         setError(null)
@@ -54,23 +57,66 @@ const ExpenseProvider = (props) => {
         setIsLoading(false)
     }
 
+
+    const editExpenseData = async(id, item) => {
+
+        try{
+
+      
+
+        const response = await axios.put(`https://expense-traker-f389d-default-rtdb.firebaseio.com/expenses/${id}.json`,item)
+        
+        const updatedData = expenses.map((expense) => expense.id === id 
+        ? {...expense, price:item.price, description:item.description, category:item.category}
+        : expense
+        );
+
+        setExpenses(updatedData)
+        
+    }catch(err){
+        console.log(err.message)
+    }
+}
+
+
+    const deleteExpenseData = async(id) => {
+        console.log(id)
+        try{
+            const response = await axios.delete(`https://expense-traker-f389d-default-rtdb.firebaseio.com/expenses/${id}.json`)
+            console.log(response)
+            const data = await response.data;
+            
+            const findData = document.getElementById(id)
+
+            const dataToBeDeleted = findData.parentElement.parentElement.parentElement.remove();
+            
+            
+        }catch(err){
+            console.log(err.message)
+        }
+    }
+
+
+
+
     useEffect(() => {
         getDataFromExpenses()
     },[])
-
 
     const expenseValue = {
         expenses:expenses,
         addExpenses: addDataToExpenses,
         getExpenses: getDataFromExpenses,
+        deleteExpense: deleteExpenseData,
+        editExpense: editExpenseData,
         error,
         isLoading,
-
+        
     }  
  
  return (
     <ExpenseContext.Provider value={expenseValue}>{props.children}</ExpenseContext.Provider>
-  )
+ )
 }
 
 export default ExpenseProvider

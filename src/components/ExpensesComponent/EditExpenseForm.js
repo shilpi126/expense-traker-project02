@@ -1,19 +1,22 @@
+
+
 import React, { useContext, useRef, useState } from 'react'
 import Input from '../../UI/Input'
 import Button from "../../UI/Button"
 
 import classes from "./ExpenseForm.module.css"
 import ExpenseContext from '../../store/expense-context'
-const ExpenseForm = (props) => {
+const EditExpenseForm = (props) => {
     const expenseCtx = useContext(ExpenseContext)
-    const [price, setPrice] = useState("")
-    const [description, setDescription] = useState("")
-    const [category, setCategory] = useState("Food")
+    const [price, setPrice] = useState(props.editData.price)
+    const [description, setDescription] = useState(props.editData.description)
+    const [category, setCategory] = useState(props.editData.category)
     
+  
 
     const handlePriceChange = (event) => {
         setPrice(event.target.value)
-
+        
     }
 
     const handleDescriptionChange = (event) => {
@@ -26,27 +29,26 @@ const ExpenseForm = (props) => {
     }
 
     const handleFormSubmit = (event) => {
-      event.preventDefault();
-
-      const expense = {
+        event.preventDefault();
+        const  id=props.editData.id;
+        const expense = {
         
         price,
         category,
         description
-      }
-       expenseCtx.addExpenses(expense)
-      //console.log(price, description, category)
-      setPrice("")
-      setCategory("")
-      setDescription("")
+        }
 
-    //   props.onSaveExpense(expense)
+        console.log(expense)
+        expenseCtx.editExpense(id,expense)
+        setPrice("")
+        setCategory("")
+        setDescription("")
     }
 
 
 return (
     <div className={classes.container}>
-        <h1>Expense Form</h1>
+        <h1>Edit Expense Form</h1>
         <form onSubmit={handleFormSubmit}>
             <Input
             
@@ -75,10 +77,9 @@ return (
             </label>
            </div>
            
-           <Button type="submit">Add Expenses</Button>
+           <Button type="submit">Edit Expenses</Button>
         </form>
     </div>
   )
 }
-
-export default ExpenseForm
+export default EditExpenseForm

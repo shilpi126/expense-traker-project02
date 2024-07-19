@@ -7,6 +7,8 @@ const ExpenseContext = createContext({
     getExpenses:() => {},
     error:null,
     isLoading:false,
+    deleteExpense:(id) => {},
+    editExpense:(id,item) => {},
 })
 
 

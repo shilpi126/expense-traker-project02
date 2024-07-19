@@ -1,20 +1,26 @@
 import React, { useState } from 'react'
 import ExpenseForm from '../../components/ExpensesComponent/ExpenseForm'
 import ExpenseList from '../../components/ExpensesComponent/ExpenseList'
+import EditExpenseForm from '../../components/ExpensesComponent/EditExpenseForm'
 
 const Expenses = () => {
-  const [expenseData, setExpenseData] = useState([])
+  const [editData, setEditData] = useState()
+  const [isEdit,setIsEdit] = useState(false)
 
-  const handleExpensesData = (data) => {
-    //console.log(data)
-    setExpenseData((prevExpenses)=> [...prevExpenses,data])
-    //console.log(expenseData)
+  const handleEditData = (isEdit,item) => {
+    //console.log(isEdit,item)
+    setIsEdit(isEdit)
+    setEditData(item)
   }
+
+
 
   return (
     <div>
-        <ExpenseForm onSaveExpense={handleExpensesData}/>
-        <ExpenseList expenseData={expenseData}/>
+      {editData ?  <EditExpenseForm  editData={editData}/> :   <ExpenseForm />}
+       
+       
+        <ExpenseList onEditData={handleEditData}/>
     </div>
   )
 }
