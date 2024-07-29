@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 import classes from "./User.module.css"
 import Button from '../../UI/Button'
-import AuthContext from '../../store/auth-context'
+//import AuthContext from '../../store/auth-context'
 const User = () => {
-  const authCtx = useContext(AuthContext)
+  //const authCtx = useContext(AuthContext)
 
   const handleVerifyEmail = async() => {
 
-      authCtx.verifyEmailId(authCtx.token)
+      //authCtx.verifyEmailId(authCtx.token)
   }
 
   return (

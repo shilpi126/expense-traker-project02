@@ -3,7 +3,9 @@ import Input from '../../UI/Input'
 import Button from '../../UI/Button';
 import classes from "./Login.module.css"
 import { Link, useNavigate } from 'react-router-dom';
-import AuthContext from '../../store/auth-context';
+import { authAction } from '../../store/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const Login = () => {
     const [email,setEmail] = useState("");
@@ -11,20 +13,16 @@ const Login = () => {
 
     const [passwordValidate, setPasswordValidate] = useState('')
     const [emailValidate, setEmailValidate] = useState('')
-
+    
     const [formValidate, setFormValidate] = useState(false)
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false)
-    const authCtx = useContext(AuthContext);
     const navigate = useNavigate()
-
-
+    const dispatch = useDispatch()
+    const isAuth = useSelector((state) => state.auth)
+    console.log(isAuth)
     
     const validateEmail = () => {
-        
-        // if(!email.includes("@")){
-        //   setError("Please Enter Valid Email.")
-        // }
         setEmailValidate(email.includes("@"))
     }
     
@@ -42,15 +40,10 @@ const Login = () => {
         setFormValidate(email.includes("@") && event.target.value.trim().length > 6 ) 
         
     }
-
   
-
-    
-    
-    
     const handleFormSubmit = async(event) => {
             event.preventDefault();
-            //console.log(email,password,confirmPassword)
+
             setIsLoading(true)
             
             try{
@@ -71,9 +64,9 @@ const Login = () => {
             
             if(response.ok){
                 const data = await response.json();
-                //alert("user successfuly register")
-                authCtx.login(data.idToken)
-                authCtx.getUserData(data.idToken)
+              
+                dispatch(authAction.login(data.idToken))
+                //authCtx.getUserData(data.idToken)
                 navigate("/")
             }else{
                 let errorMessage = "Something went wrong!"

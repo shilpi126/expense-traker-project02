@@ -5,9 +5,11 @@ import Input from '../../UI/Input'
 import Button from "../../UI/Button"
 
 import classes from "./ExpenseForm.module.css"
-import ExpenseContext from '../../store/expense-context'
+//import ExpenseContext from '../../store/expense-context'
+
+
 const EditExpenseForm = (props) => {
-    const expenseCtx = useContext(ExpenseContext)
+    //const expenseCtx = useContext(ExpenseContext)
     const [price, setPrice] = useState(props.editData.price)
     const [description, setDescription] = useState(props.editData.description)
     const [category, setCategory] = useState(props.editData.category)
@@ -30,7 +32,7 @@ const EditExpenseForm = (props) => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        const  id=props.editData.id;
+        //const  id=props.editData.id;
         const expense = {
         
         price,
@@ -39,7 +41,7 @@ const EditExpenseForm = (props) => {
         }
 
         console.log(expense)
-        expenseCtx.editExpense(id,expense)
+        //expenseCtx.editExpense(id,expense)
         setPrice("")
         setCategory("")
         setDescription("")

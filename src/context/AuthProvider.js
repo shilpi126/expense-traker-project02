@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 const AuthProvider = (props) => {
   const initialToken = localStorage.getItem('token')
   const existingUser = JSON.parse(localStorage.getItem("userData"))
+
     const [token, setToken] = useState(initialToken)
     const [userData, setUserData] = useState({})
     const navigate = useNavigate()
@@ -27,9 +28,7 @@ const AuthProvider = (props) => {
 
 
 
-
-
-    const getUserData = async(userToken) => {
+  const getUserData = async(userToken) => {
         
       try{
           const response = await fetch("https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBqneiGRuQnRsXP9KMWcL0KKPcEVssnBVM",{
@@ -100,9 +99,6 @@ const AuthProvider = (props) => {
       console.log(err)
   }
   }
-
-
-
 
 
     const authValue = {

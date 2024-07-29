@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
 import classes from "./ExpenseList.module.css"
-import ExpenseContext from '../../store/expense-context'
+//import ExpenseContext from '../../store/expense-context'
 import Button from "../../UI/Button"
 
 
 
 const ExpenseList = (props) => {
-  const expenseCtx = useContext(ExpenseContext)
+  //const expenseCtx = useContext(ExpenseContext)
   // const [isEdit, setIsEdit] = useState(false)
 
   
@@ -14,17 +14,17 @@ const ExpenseList = (props) => {
   const handleEditExpense = (event) => {
     
     const id = event.target.id;
-    const editItem = expenseCtx.expenses.find((item) => item.id == id)
+    //const editItem = expenseCtx.expenses.find((item) => item.id == id)
     
-    props.onEditData(true,editItem)
+    //props.onEditData(true,editItem)
     
-    expenseCtx.deleteExpense(id);
+    //expenseCtx.deleteExpense(id);
     
   }
 
   const handleDeleteExpense = (event) => {
     
-    expenseCtx.deleteExpense(event.target.id)
+    //expenseCtx.deleteExpense(event.target.id)
   }
 
 
@@ -34,7 +34,7 @@ const ExpenseList = (props) => {
     
 
     <div className={classes.container}>
-
+{/* 
     <ul className={classes.ul}>
       {expenseCtx.isLoading && <p>Loading...</p>}
       {expenseCtx.error && expenseCtx.error}
@@ -52,7 +52,7 @@ const ExpenseList = (props) => {
               
         ))}
         
-      </ul>
+      </ul> */}
     </div>
     
     

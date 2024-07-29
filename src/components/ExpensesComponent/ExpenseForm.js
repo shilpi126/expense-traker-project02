@@ -3,9 +3,9 @@ import Input from '../../UI/Input'
 import Button from "../../UI/Button"
 
 import classes from "./ExpenseForm.module.css"
-import ExpenseContext from '../../store/expense-context'
+//import ExpenseContext from '../../store/expense-context'
 const ExpenseForm = (props) => {
-    const expenseCtx = useContext(ExpenseContext)
+   // const expenseCtx = useContext(ExpenseContext)
     const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
     const [category, setCategory] = useState("Food")
@@ -34,7 +34,7 @@ const ExpenseForm = (props) => {
         category,
         description
       }
-       expenseCtx.addExpenses(expense)
+       //expenseCtx.addExpenses(expense)
       //console.log(price, description, category)
       setPrice("")
       setCategory("")

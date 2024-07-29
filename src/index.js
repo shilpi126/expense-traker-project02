@@ -3,19 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import AuthProvider from './store/AuthProvider';
-import ExpenseProvider from './store/ExpenseProvider';
+import { Provider } from 'react-redux';
+import store from './store';
+
+//import AuthProvider from './store/AuthProvider';
+//import ExpenseProvider from './store/ExpenseProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    
+    <Provider store={store}>
     <BrowserRouter>
-    <AuthProvider>
-    <ExpenseProvider>
+    
     <App />
-    </ExpenseProvider>
-    </AuthProvider>
+    
     </BrowserRouter>
+    </Provider>
 
 
 );

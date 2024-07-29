@@ -3,7 +3,7 @@ import Input from '../../UI/Input'
 import Button from '../../UI/Button';
 import classes from "./ForgotPassword.module.css"
 import { Link, useNavigate } from 'react-router-dom';
-import AuthContext from '../../store/auth-context';
+//import AuthContext from '../../store/auth-context';
 
 const ForgotPassword = () => {
 
@@ -14,7 +14,7 @@ const ForgotPassword = () => {
     const [formValidate, setFormValidate] = useState(false)
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false)
-    const authCtx = useContext(AuthContext);
+    //const authCtx = useContext(AuthContext);
     const navigate = useNavigate()
 
 
