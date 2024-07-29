@@ -12,7 +12,6 @@ const initialState = {
 
 
 
-
 const AuthSlice = createSlice({
     name:"auth",
     initialState,

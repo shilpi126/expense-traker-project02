@@ -20,7 +20,7 @@ const Login = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const isAuth = useSelector((state) => state.auth)
-    console.log(isAuth)
+    //console.log(isAuth)
     
     const validateEmail = () => {
         setEmailValidate(email.includes("@"))

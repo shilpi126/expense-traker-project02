@@ -1,15 +1,19 @@
 import React, { useContext, useRef, useState } from 'react'
 import Input from '../../UI/Input'
 import Button from "../../UI/Button"
-
 import classes from "./ExpenseForm.module.css"
-//import ExpenseContext from '../../store/expense-context'
+import { useDispatch } from 'react-redux'
+import { expenseAction } from '../../store/expenseSlice'
+import axios from 'axios'
+
 const ExpenseForm = (props) => {
    // const expenseCtx = useContext(ExpenseContext)
     const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
     const [category, setCategory] = useState("Food")
-    
+    const dispatch = useDispatch()
+
+    //console.log(expenseAction);
 
     const handlePriceChange = (event) => {
         setPrice(event.target.value)
@@ -25,23 +29,42 @@ const ExpenseForm = (props) => {
         setCategory(event.target.value)
     }
 
+
+
     const handleFormSubmit = (event) => {
       event.preventDefault();
-
+      
       const expense = {
-        
         price,
         category,
         description
       }
-       //expenseCtx.addExpenses(expense)
-      //console.log(price, description, category)
+
+      addExpense(expense)
+
       setPrice("")
       setCategory("")
       setDescription("")
 
-    //   props.onSaveExpense(expense)
+    
     }
+
+
+
+    const addExpense = async(expense) =>{
+        try{
+          const response = await axios.post("https://expense-traker-f389d-default-rtdb.firebaseio.com/expenses.json", expense)
+          const data = await response;
+          
+    
+        }catch(err){
+          console.log(err.message)
+        }
+    }
+
+
+
+
 
 
 return (

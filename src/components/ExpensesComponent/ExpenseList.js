@@ -1,15 +1,49 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import classes from "./ExpenseList.module.css"
 //import ExpenseContext from '../../store/expense-context'
 import Button from "../../UI/Button"
+import axios from 'axios'
+import { expenseAction } from '../../store/expenseSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import Activateprimium from '../ActivatePrimium/Activateprimium'
 
 
 
 const ExpenseList = (props) => {
+  const expenseData = useSelector((state)=>state.expense)
+  const dispatch= useDispatch()
+
+  console.log(expenseData.premium)
   //const expenseCtx = useContext(ExpenseContext)
   // const [isEdit, setIsEdit] = useState(false)
 
+  const getExpenseData = async() => {
+    
+    
+      //setError(null)
+      try{
+          //setIsLoading(true)
+              const response = await axios.get("https://expense-traker-f389d-default-rtdb.firebaseio.com/expenses.json")
+              
+              const data = await response.data;
+              dispatch(expenseAction.getExpenses(data))
+
+              
+      }catch(err){
+        
+          console.log(err.message)
+      }
+      
+      //setIsLoading(false)
   
+
+  }
+
+  useEffect(()=>{
+      getExpenseData()
+  },[])
+
+
 
   const handleEditExpense = (event) => {
     
@@ -34,25 +68,34 @@ const ExpenseList = (props) => {
     
 
     <div className={classes.container}>
-{/* 
+
     <ul className={classes.ul}>
-      {expenseCtx.isLoading && <p>Loading...</p>}
-      {expenseCtx.error && expenseCtx.error}
-      {!expenseCtx.expenses && <p>Expenses not found...</p>}
-      {expenseCtx.expenses.map((item,index)=>(
-              <li key={index+1}>
-              <p>{item.price}</p>
-              <p>{item.description}</p>
-              <p>{item.category}</p>
-             <div className={classes.action}>
-             <Button id={item.id} type="button" onClick={handleEditExpense}>Edit</Button>
-             <Button id={item.id} type="button" onClick={handleDeleteExpense}>Delete</Button>
-             </div>
-              </li>
-              
-        ))}
-        
-      </ul> */}
+      {/* {expenseData.isLoading && <p>Loading...</p>}
+      {expenseCtx.error && expenseCtx.error} */}
+      {!expenseData && <p>Expenses not found...</p>}
+      {expenseData.premium 
+      ? 
+      <Activateprimium/> 
+      : 
+      
+      (
+            expenseData.expenses.map((item,index)=>(
+            <li key={index+1}>
+            <p>{item.price}</p>
+            <p>{item.description}</p>
+            <p>{item.category}</p>
+            <div className={classes.action}>
+            <Button id={item.id} type="button" onClick={handleEditExpense}>Edit</Button>
+            <Button id={item.id} type="button" onClick={handleDeleteExpense}>Delete</Button>
+            </div>
+            </li>
+            
+      ))
+      
+      )}
+
+   
+      </ul>
     </div>
     
     

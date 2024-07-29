@@ -1,0 +1,17 @@
+.active {
+   
+    text-align: center;
+}
+
+.active button{
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    height: 100%;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(6, 1, 48);
+    border-radius: 5px;
+    color: white;
+    border:1px solid gray;
+}
