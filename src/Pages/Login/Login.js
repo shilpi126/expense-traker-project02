@@ -5,6 +5,7 @@ import classes from "./Login.module.css"
 import { Link, useNavigate } from 'react-router-dom';
 import { authAction } from '../../store/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import Header from '../../components/Header/Header';
 
 
 const Login = () => {
@@ -91,7 +92,9 @@ const Login = () => {
     
     
   return (
+    
     <div className={classes.container}>
+     
       {error && <div className={classes.error}>{error}</div>}
       {isLoading &&  <p className={classes.error}>Loading...</p>}
     <div className={classes.form}>
@@ -126,6 +129,7 @@ const Login = () => {
         <Button type="button" ><Link to="/signup">Don't have account, Sign Up</Link></Button>
       </div>
     </div>
+    
   )
 }
 

@@ -8,17 +8,19 @@ import axios from 'axios'
 
 const ExpenseForm = (props) => {
    // const expenseCtx = useContext(ExpenseContext)
+   const [showExpenseForm, setShowExpenseForm] = useState(false)
+
     const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
     const [category, setCategory] = useState("Food")
     const dispatch = useDispatch()
 
-    //console.log(expenseAction);
+ 
+
 
     const handlePriceChange = (event) => {
         setPrice(event.target.value)
-
-    }
+      }
 
     const handleDescriptionChange = (event) => {
         setDescription(event.target.value)
@@ -51,26 +53,38 @@ const ExpenseForm = (props) => {
 
 
 
-    const addExpense = async(expense) =>{
+    const addExpense = async(expense) => {
         try{
-          const response = await axios.post("https://expense-traker-f389d-default-rtdb.firebaseio.com/expenses.json", expense)
+          const response = await axios.post("https://rest-api-71236-default-rtdb.firebaseio.com/expenses.json", expense)
           const data = await response;
+          //console.log(data)
           
-    
+          
         }catch(err){
           console.log(err.message)
         }
     }
 
 
+const handleAddExpenses = () => {
+   setShowExpenseForm(true)
+}
 
+
+
+const handleCancleExpenses = () => {
+  setShowExpenseForm(false)
+}
 
 
 
 return (
+  
     <div className={classes.container}>
-        <h1>Expense Form</h1>
+        {showExpenseForm ? <>
+          <h1>Expense Form</h1>
         <form onSubmit={handleFormSubmit}>
+      
             <Input
             
             type="text"
@@ -98,8 +112,18 @@ return (
             </label>
            </div>
            
-           <Button type="submit">Add Expenses</Button>
+          <div className={classes["action-btn"]}>
+          <Button type="submit">Add Expenses</Button>
+          <Button type="submit" onClick={handleCancleExpenses}>Cancle</Button>
+          </div>
         </form>
+        </> :
+        <div className={classes.btn}>
+        <Button onClick={handleAddExpenses}>Add Expenses</Button>
+        </div>
+        }
+
+
     </div>
   )
 }

@@ -13,7 +13,7 @@ const ExpenseList = (props) => {
   const expenseData = useSelector((state)=>state.expense)
   const dispatch= useDispatch()
 
-  console.log(expenseData.premium)
+  console.log(expenseData)
   //const expenseCtx = useContext(ExpenseContext)
   // const [isEdit, setIsEdit] = useState(false)
 
@@ -23,7 +23,7 @@ const ExpenseList = (props) => {
       //setError(null)
       try{
           //setIsLoading(true)
-              const response = await axios.get("https://expense-traker-f389d-default-rtdb.firebaseio.com/expenses.json")
+              const response = await axios.get("https://rest-api-71236-default-rtdb.firebaseio.com/expenses.json")
               
               const data = await response.data;
               dispatch(expenseAction.getExpenses(data))
@@ -72,6 +72,7 @@ const ExpenseList = (props) => {
     <ul className={classes.ul}>
       {/* {expenseData.isLoading && <p>Loading...</p>}
       {expenseCtx.error && expenseCtx.error} */}
+       {/* {expenseData === null && <p style={{color:"orange"}}>Expenses not found...</p>} */}
       {!expenseData && <p>Expenses not found...</p>}
       {expenseData.premium 
       ? 
@@ -94,8 +95,9 @@ const ExpenseList = (props) => {
       
       )}
 
-   
+     
       </ul>
+      
     </div>
     
     

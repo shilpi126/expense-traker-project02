@@ -20,10 +20,10 @@
 .container form {
     width: 30rem;
     height: 20rem;
-    background-color: rgb(6, 1, 48);
+    background-color: rgb(2, 0, 28);
     border-radius: 5px;
     padding: 30px;
-    box-shadow: 0px 0px 5px 5px gray;
+    box-shadow: 0px 0px 5px 2px rgb(62, 61, 61);
 
 }
 .container form label{
@@ -59,19 +59,26 @@
 
 }
 
-.container form button{
-      background-color: rgb(245, 94, 8);
-      color: white;
-      width: 10rem;
-      height: 2rem;
-      margin-top: 30px;
-      border: 1px solid gray;
-      border-radius: 5px;
-      margin-left: 32%;
+.container form .action-btn{
+    display: flex;
+    justify-content:flex-start;
+    
 }
 
+.container form .action-btn button{
+      background-color: rgb(245, 94, 8);
+      color: white;
+      width: 8rem;
+      height: 2.5rem;
+      
+      margin-right: 20px;
+      margin-top: 40px;
+      border: 1px solid gray;
+      border-radius: 5px;
+      
+}
 
-.container form button:hover{
+.container form .action-btn button:hover{
 
     background-color: white;
     color: black;
@@ -81,3 +88,40 @@
     scale: 110%;
     
 }
+
+.container  .btn{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+   
+}
+
+
+.container  .btn button{
+    background-color: rgb(245, 94, 8);
+    color: white;
+    font-size: larger;
+    
+    margin-top: 4rem;
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 15rem;
+    height: 3rem;
+    
+}
+
+
+.container .btn button:hover{
+
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: ease-in-out;
+    transition-duration: 0.5s;
+    scale: 110%;
+    
+}
+
+

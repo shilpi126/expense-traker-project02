@@ -3,6 +3,7 @@ import Input from '../../UI/Input'
 import Button from '../../UI/Button';
 import classes from "./Signup.module.css"
 import { Link } from 'react-router-dom';
+import Header from '../../components/Header/Header';
 let url="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBqneiGRuQnRsXP9KMWcL0KKPcEVssnBVM";
           
 const Signup = () => {
@@ -103,7 +104,9 @@ const Signup = () => {
   
 
   return (
+   
     <div className={classes.container}>
+      
       {error && <div className={classes.error}>{error}</div>}
       {isLoading &&  <p className={classes.error}>Loading...</p>}
     <div className={classes.form}>
@@ -144,6 +147,7 @@ const Signup = () => {
         <Button type="button"><Link to="/login">Have an account? Login</Link></Button>
       </div>
     </div>
+   
   )
 }
 

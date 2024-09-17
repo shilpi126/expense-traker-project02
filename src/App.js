@@ -8,16 +8,19 @@ import User from "./Pages/User/User";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import Expenses from "./Pages/Expenses/Expenses";
 import { useSelector } from "react-redux";
-import ProfileHeader from "./components/ProfileHeader";
+
+import Header from "./components/Header/Header";
+import "./App.css"
+
 
 function App() {
 
   const isAuth = useSelector((state) => state.auth)
 
-//console.log(isAuth)
+
   return (
     <div>
-    <ProfileHeader/>
+      <Header/>
       <Routes>
     
       <Route path="/" element={isAuth.isLoggedIn ? <Expenses/> : <Navigate to="/login"/>}/>
