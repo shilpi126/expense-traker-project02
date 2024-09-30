@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Input from '../../UI/Input'
 import Button from '../../UI/Button';
 import classes from "./Login.module.css"
 import { Link, useNavigate } from 'react-router-dom';
 import { authAction } from '../../store/authSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import Header from '../../components/Header/Header';
+import { useDispatch} from 'react-redux';
+// import Header from '../../components/Header/Header';
 
 
 const Login = () => {
@@ -16,11 +16,11 @@ const Login = () => {
     const [emailValidate, setEmailValidate] = useState('')
     
     const [formValidate, setFormValidate] = useState(false)
-    const [error, setError] = useState("");
+    // const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const isAuth = useSelector((state) => state.auth)
+    // const isAuth = useSelector((state) => state.auth)
     //console.log(isAuth)
     
     const validateEmail = () => {
@@ -44,6 +44,7 @@ const Login = () => {
   
     const handleFormSubmit = async(event) => {
             event.preventDefault();
+            console.log(passwordValidate,emailValidate)
 
             setIsLoading(true)
             
@@ -95,7 +96,7 @@ const Login = () => {
     
     <div className={classes.container}>
      
-      {error && <div className={classes.error}>{error}</div>}
+      {/* {error && <div className={classes.error}>{error}</div>} */}
       {isLoading &&  <p className={classes.error}>Loading...</p>}
     <div className={classes.form}>
       <h2>Login</h2>

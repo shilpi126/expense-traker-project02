@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import classes from "./ExpenseList.module.css"
 //import ExpenseContext from '../../store/expense-context'
 import Button from "../../UI/Button"
-import axios from 'axios'
+
 import { expenseAction } from '../../store/expenseSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import Activateprimium from '../ActivatePrimium/Activateprimium'
@@ -23,7 +23,7 @@ const ExpenseList = (props) => {
       //setError(null)
       try{
           //setIsLoading(true)
-              const response = await axios.get("https://rest-api-71236-default-rtdb.firebaseio.com/expenses.json")
+              const response = await fetch("https://rest-api-71236-default-rtdb.firebaseio.com/expenses.json")
               
               const data = await response.data;
               dispatch(expenseAction.getExpenses(data))
@@ -39,7 +39,7 @@ const ExpenseList = (props) => {
 
   }
 
-  useEffect(()=>{
+ useEffect(()=>{
       getExpenseData()
   },[])
 
@@ -47,7 +47,7 @@ const ExpenseList = (props) => {
 
   const handleEditExpense = (event) => {
     
-    const id = event.target.id;
+    // const id = event.target.id;
     //const editItem = expenseCtx.expenses.find((item) => item.id == id)
     
     //props.onEditData(true,editItem)

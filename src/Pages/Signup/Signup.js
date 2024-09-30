@@ -3,7 +3,7 @@ import Input from '../../UI/Input'
 import Button from '../../UI/Button';
 import classes from "./Signup.module.css"
 import { Link } from 'react-router-dom';
-import Header from '../../components/Header/Header';
+
 let url="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBqneiGRuQnRsXP9KMWcL0KKPcEVssnBVM";
           
 const Signup = () => {
@@ -14,18 +14,15 @@ const Signup = () => {
   const [emailValidate, setEmailValidate] = useState('')
   const [confirmPasswordValidate, setConfirmPasswordValidate] = useState('')
   const [formValidate, setFormValidate] = useState(false)
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false)
 
 
 
-
+console.log(passwordValidate,emailValidate,confirmPasswordValidate)
 
   const validateEmail = () => {
     
-    // if(!email.includes("@")){
-    //   setError("Please Enter Valid Email.")
-    // }
       setEmailValidate(email.includes("@"))
   }
 
@@ -57,7 +54,7 @@ const Signup = () => {
 
   const handleFormSubmit = async(event) => {
         event.preventDefault();
-        //console.log(email,password,confirmPassword)
+        
         setIsLoading(true)
         
         try{
@@ -107,7 +104,7 @@ const Signup = () => {
    
     <div className={classes.container}>
       
-      {error && <div className={classes.error}>{error}</div>}
+      {/* {error && <div className={classes.error}>{error}</div>} */}
       {isLoading &&  <p className={classes.error}>Loading...</p>}
     <div className={classes.form}>
       <h2>Sign Up</h2>
